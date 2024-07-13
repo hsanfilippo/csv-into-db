@@ -2,3 +2,4 @@ csv_lib
 ABBREV_to_db.py
 insert_specific.py
 testes_psycopg2
+__pycache__

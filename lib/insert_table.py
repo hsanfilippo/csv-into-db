@@ -1,20 +1,6 @@
-# CREATING A BRAND NEW DB BASED ON A CSV FILE:
-def create(tableName: str, colNames: list, colTypes: list) -> str: 
-    try:
-        query_parts = list()
-        query_content = str()
-        
-        for col_name, col_type in zip(colNames, colTypes):
-            query_parts.append(f"{col_name} {col_type}")
-            query_content = ", ".join(query_parts)
-            final_query = f"""CREATE TABLE {tableName} ({query_content});""" # Lacks 'conv_types' function implementation
+colunas = ['nome', 'cpf', 'idade', 'telefone']
+values = ['John Doe', '12345678911', 27, 133713377]
 
-    except Exception as exc:
-        print(f"{exc}")
-    
-    return final_query
-
-# INSERTING DATA INTO A DB BASED ON A CSV FILE:
 def insert(tableName: str, cols: list, values: list) -> str:
     try:
         query_temp = list()
@@ -41,3 +27,5 @@ def insert(tableName: str, cols: list, values: list) -> str:
         print(f"{exc}")
     
     return final_query
+
+print(insert(tableName='tabela_teste', cols=colunas, values=values))

@@ -13,6 +13,8 @@ def conv_types(typesList: list):
             final_types[i] = 'TEXT'
         elif typ == 'int':
             final_types[i] = 'INTEGER'
+        elif typ == 'bool':
+            final_types[i] = 'BOOLEAN'
 
     return final_types
 

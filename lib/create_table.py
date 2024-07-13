@@ -4,7 +4,7 @@ from psql_tables import *
 colunas_tabela = ['nome', 'cpf', 'idade', 'telefone']
 tipos_coluna = ['VARCHAR(30)', 'VARCHAR(11)', 'INTEGER', 'INTEGER']
 types_list = [123, None, True, 'John', 1.23]
-conv_type_list = conv_types(typesList=types_list)
+conv_type_list = conv_types_psql(typesList=types_list)
 
 try:
     connect = psycopg2.connect(
@@ -16,7 +16,7 @@ try:
     )
 
     cursor = connect.cursor()
-    create_table_query = f"""{create(tableName='teste_create', colNames=colunas_tabela, colTypes=conv_type_list)}"""
+    create_table_query = f"""{create_psql(tableName='teste_create', colNames=colunas_tabela, colTypes=conv_type_list)}"""
     cursor.execute(create_table_query)
     connect.commit()
 

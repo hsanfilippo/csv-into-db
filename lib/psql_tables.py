@@ -1,5 +1,5 @@
 # READ AND CONVERT PYTHON TYPES INTO POSTGRESQL TYPES:
-def conv_types(typesList: list):
+def conv_types_psql(typesList: list):
     final_types = []
 
     for item in typesList:
@@ -18,12 +18,12 @@ def conv_types(typesList: list):
     return final_types
 
 # CREATES A BRAND NEW DB BASED ON A CSV FILE:
-def create(tableName: str, colNames: list, colTypes: list) -> str: 
+def create_psql(tableName: str, colNames: list, colTypes: list) -> str: 
     try:
         query_parts = list()
         query_content = str()
         
-        for col_name, col_type in zip(colNames, conv_types(colTypes)): # CALLS CONV_TYPES()
+        for col_name, col_type in zip(colNames, conv_types_psql(colTypes)): # CALLS CONV_TYPES()
             query_parts.append(f"{col_name} {col_type}")
             query_content = ", ".join(query_parts)
             final_query = f"""CREATE TABLE {tableName} ({query_content});"""
@@ -34,7 +34,7 @@ def create(tableName: str, colNames: list, colTypes: list) -> str:
     return final_query
 
 # INSERTS DATA INTO A DB BASED ON A CSV FILE:
-def insert(tableName: str, cols: list, values: list) -> str:
+def insert_psql(tableName: str, cols: list, values: list) -> str:
     try:
         query_temp = list()
         query_col = str()

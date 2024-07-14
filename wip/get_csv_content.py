@@ -6,9 +6,19 @@ def get_csv_lines(file_loc: str) -> list:
         line = fp.readline()
 
         while line:
-            line_content = line.split(sep=',')
-            line_content[-1] = line_content[-1].strip()
-            csv_lines.append(line_content)
+            conv_list = []
+            line_content = line.strip().split(sep=',')
+            for content in line_content:
+                content = content.replace("'", "")
+                try:
+                    if '.' in content:
+                        content = float(content)
+                    else:
+                        content = int(content)
+                except ValueError:
+                    pass
+                conv_list.append(content)
+            csv_lines.append(conv_list)
             line = fp.readline()
 
     return csv_lines

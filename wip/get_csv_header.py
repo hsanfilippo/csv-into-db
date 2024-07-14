@@ -9,5 +9,3 @@ def get_csv_header(file_loc: str) -> list:
             header_list.append(item.strip())
 
     return header_list
-
-print(get_csv_header('./csv_lib/alimentos.csv'))

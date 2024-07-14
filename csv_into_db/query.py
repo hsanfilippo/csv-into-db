@@ -1,5 +1,3 @@
-import create_psql as create
-
 def query(queryOp: str, userName: str, passWord: str, hostAddr: str, dbName: str, portNo='5432'):
     import psycopg2
 
@@ -16,7 +14,7 @@ def query(queryOp: str, userName: str, passWord: str, hostAddr: str, dbName: str
         try:
             cursor.execute(queryOp)
             conn.commit()
-        except:
+        except (Exception, psycopg2.Error) as error:
             print('Error executing SQL input', error)
             conn.rollback()
         finally:
